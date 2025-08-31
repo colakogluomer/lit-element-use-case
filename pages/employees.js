@@ -341,7 +341,6 @@ export class EmployeesPage extends LitElement {
     this.deleteModalOpen = false;
     this.employeeToDelete = null;
 
-    // Subscribe to store changes
     store.subscribe((state) => {
       this.employees = state.employees;
       this.viewMode = state.viewMode;
@@ -349,14 +348,12 @@ export class EmployeesPage extends LitElement {
       this.totalPages = state.getTotalPages();
     });
 
-    // Get initial state
     const initialState = store.getState();
     this.employees = initialState.employees;
     this.viewMode = initialState.viewMode;
     this.pagination = initialState.pagination;
     this.totalPages = initialState.getTotalPages();
 
-    // Enable automatic re-render when locale changes
     updateWhenLocaleChanges(this);
   }
 
@@ -719,7 +716,6 @@ export class EmployeesPage extends LitElement {
     this.employeeToDelete = employee;
     this.deleteModalOpen = true;
 
-    // Open modal with delete confirmation
     const modal = this.shadowRoot.querySelector('modal-component');
     modal.openModal({
       title: msg('Are you sure?'),
@@ -735,7 +731,6 @@ export class EmployeesPage extends LitElement {
   handleBulkDelete() {
     this.deleteModalOpen = true;
 
-    // Open modal with bulk delete confirmation
     const modal = this.shadowRoot.querySelector('modal-component');
     modal.openModal({
       title: msg('Are you sure?'),
@@ -750,11 +745,9 @@ export class EmployeesPage extends LitElement {
 
   handleDeleteConfirm() {
     if (this.employeeToDelete) {
-      // Single employee delete
       store.getState().removeEmployee(this.employeeToDelete.id);
       this.employeeToDelete = null;
     } else {
-      // Bulk delete
       store.getState().removeMultipleEmployees(this.selectedEmployees);
       this.selectedEmployees = [];
     }

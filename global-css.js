@@ -1,10 +1,6 @@
 import {css} from 'lit';
 
 export const globalCss = css`
-  /* ========================================
-     Global Reset & Base Styles
-     ======================================== */
-
   * {
     box-sizing: border-box;
   }
@@ -20,11 +16,6 @@ export const globalCss = css`
     background-color: black !important;
   }
 
-  /* ========================================
-     Utility Classes
-     ======================================== */
-
-  /* Text utilities */
   .text-primary {
     color: var(--color-text-primary);
   }
@@ -38,7 +29,6 @@ export const globalCss = css`
     color: var(--color-text-inverse);
   }
 
-  /* Background utilities */
   .bg-primary {
     background-color: var(--color-bg-primary);
   }
@@ -49,7 +39,6 @@ export const globalCss = css`
     background-color: var(--color-bg-tertiary);
   }
 
-  /* Font size utilities */
   .text-xs {
     font-size: var(--font-size-xs);
   }
@@ -78,7 +67,6 @@ export const globalCss = css`
     font-size: var(--font-size-5xl);
   }
 
-  /* Font weight utilities */
   .font-light {
     font-weight: var(--font-weight-light);
   }
@@ -95,10 +83,6 @@ export const globalCss = css`
     font-weight: var(--font-weight-bold);
   }
 
-  /* ========================================
-     Focus Styles for Accessibility
-     ======================================== */
-
   button:focus,
   input:focus,
   select:focus,
@@ -106,10 +90,6 @@ export const globalCss = css`
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
-
-  /* ========================================
-     Page Layout Classes
-     ======================================== */
 
   .page-container {
     display: block;
@@ -156,16 +136,11 @@ export const globalCss = css`
     flex-wrap: wrap;
   }
 
-  /* Responsive controls */
   @media (max-width: 768px) {
     .controls {
       justify-content: center;
     }
   }
-
-  /* ========================================
-     Form Classes
-     ======================================== */
 
   .form-container {
     background: var(--color-white);
@@ -239,7 +214,6 @@ export const globalCss = css`
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
   }
 
-  /* Date input styling */
   input[type='date']::-webkit-calendar-picker-indicator {
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg)
       brightness(118%) contrast(119%);
@@ -251,7 +225,6 @@ export const globalCss = css`
       brightness(100%) contrast(119%);
   }
 
-  /* Date input value styling */
   input[type='date'] {
     color: var(--color-text-primary);
   }
@@ -345,10 +318,6 @@ export const globalCss = css`
     font-size: var(--font-size-sm);
     margin-top: var(--spacing-xs);
   }
-
-  /* ========================================
-     Loading & Error States
-     ======================================== */
 
   .loading {
     text-align: center;

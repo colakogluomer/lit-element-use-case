@@ -9,12 +9,10 @@ import store from '../../store/employee.js';
 
 suite('Employee Store', () => {
   setup(() => {
-    // Store'u test öncesi temizle
     localStorage.clear();
   });
 
   teardown(() => {
-    // Test sonrası temizle
     localStorage.clear();
   });
 

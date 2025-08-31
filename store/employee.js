@@ -1,18 +1,15 @@
 import {createStore} from 'zustand/vanilla';
 import {employeesData} from '../employees.js';
 
-// Initialize view mode from localStorage
 const initializeViewMode = () => {
   const storedViewMode = localStorage.getItem('employeeViewMode');
-  return storedViewMode || 'table'; // Default to table view
+  return storedViewMode || 'table';
 };
 
-// Get items per page based on view mode
 const getItemsPerPage = (viewMode) => {
   return viewMode === 'table' ? 9 : 4;
 };
 
-// Initialize pagination settings from localStorage
 const initializePagination = () => {
   const storedPagination = localStorage.getItem('employeePagination');
   const viewMode = initializeViewMode();
@@ -20,12 +17,11 @@ const initializePagination = () => {
 
   if (storedPagination) {
     const parsed = JSON.parse(storedPagination);
-    // Update itemsPerPage if view mode changed
     if (parsed.itemsPerPage !== itemsPerPage) {
       const updatedPagination = {
         ...parsed,
         itemsPerPage,
-        currentPage: 1, // Reset to first page when changing view mode
+        currentPage: 1,
       };
       localStorage.setItem(
         'employeePagination',
@@ -45,7 +41,6 @@ const initializePagination = () => {
   return defaultPagination;
 };
 
-// Get total count of employees (for pagination info)
 const getTotalEmployeeCount = () => {
   const storedEmployees = localStorage.getItem('employees');
   if (storedEmployees) {
@@ -54,7 +49,6 @@ const getTotalEmployeeCount = () => {
   return employeesData.length;
 };
 
-// Load employees for specific page (database-like approach)
 const loadEmployeesForPage = (page, itemsPerPage) => {
   const storedEmployees = localStorage.getItem('employees');
   let allEmployees;
@@ -62,7 +56,6 @@ const loadEmployeesForPage = (page, itemsPerPage) => {
   if (storedEmployees) {
     allEmployees = JSON.parse(storedEmployees);
   } else {
-    // First time: save to localStorage and return first page
     localStorage.setItem('employees', JSON.stringify(employeesData));
     allEmployees = employeesData;
   }
@@ -73,35 +66,31 @@ const loadEmployeesForPage = (page, itemsPerPage) => {
   return allEmployees.slice(startIndex, endIndex);
 };
 
-// Initialize employees for first page
 const initializeEmployees = () => {
   const pagination = initializePagination();
   return loadEmployeesForPage(pagination.currentPage, pagination.itemsPerPage);
 };
 
 const store = createStore((set, get) => ({
-  employees: initializeEmployees(), // Only current page employees
-  viewMode: initializeViewMode(), // 'table' or 'card'
+  employees: initializeEmployees(),
+  viewMode: initializeViewMode(),
   pagination: initializePagination(),
-  totalCount: getTotalEmployeeCount(), // Total number of employees
+  totalCount: getTotalEmployeeCount(),
   selectedEmployee: null,
 
-  // View mode actions
   setViewMode: (mode) => {
     localStorage.setItem('employeeViewMode', mode);
 
-    // Update pagination with new itemsPerPage
     const newItemsPerPage = getItemsPerPage(mode);
     const currentPagination = get().pagination;
     const newPagination = {
       ...currentPagination,
       itemsPerPage: newItemsPerPage,
-      currentPage: 1, // Reset to first page when changing view mode
+      currentPage: 1,
     };
 
     localStorage.setItem('employeePagination', JSON.stringify(newPagination));
 
-    // Load employees for the first page with new itemsPerPage
     const newEmployees = loadEmployeesForPage(1, newItemsPerPage);
 
     set({
@@ -111,13 +100,11 @@ const store = createStore((set, get) => ({
     });
   },
 
-  // Pagination actions
   setCurrentPage: (page) => {
     const currentPagination = get().pagination;
     const newPagination = {...currentPagination, currentPage: page};
     localStorage.setItem('employeePagination', JSON.stringify(newPagination));
 
-    // Load employees for the new page
     const newEmployees = loadEmployeesForPage(page, newPagination.itemsPerPage);
 
     set({
@@ -131,7 +118,6 @@ const store = createStore((set, get) => ({
     const newPagination = {...currentPagination, itemsPerPage, currentPage: 1};
     localStorage.setItem('employeePagination', JSON.stringify(newPagination));
 
-    // Load employees for the first page with new itemsPerPage
     const newEmployees = loadEmployeesForPage(1, itemsPerPage);
 
     set({
@@ -140,7 +126,6 @@ const store = createStore((set, get) => ({
     });
   },
 
-  // Employee actions (these need to reload current page after changes)
   addEmployee: (employee) => {
     const state = get();
     const storedEmployees = localStorage.getItem('employees');
@@ -156,7 +141,6 @@ const store = createStore((set, get) => ({
     const updatedAllEmployees = [...allEmployees, newEmployee];
     localStorage.setItem('employees', JSON.stringify(updatedAllEmployees));
 
-    // Reload current page
     const newEmployees = loadEmployeesForPage(
       state.pagination.currentPage,
       state.pagination.itemsPerPage
@@ -178,7 +162,6 @@ const store = createStore((set, get) => ({
     const updatedAllEmployees = allEmployees.filter((emp) => emp.id !== id);
     localStorage.setItem('employees', JSON.stringify(updatedAllEmployees));
 
-    // Reload current page
     const newEmployees = loadEmployeesForPage(
       state.pagination.currentPage,
       state.pagination.itemsPerPage
@@ -202,7 +185,6 @@ const store = createStore((set, get) => ({
     );
     localStorage.setItem('employees', JSON.stringify(updatedAllEmployees));
 
-    // Reload current page
     const newEmployees = loadEmployeesForPage(
       state.pagination.currentPage,
       state.pagination.itemsPerPage
@@ -225,7 +207,6 @@ const store = createStore((set, get) => ({
     );
     localStorage.setItem('employees', JSON.stringify(updatedAllEmployees));
 
-    // Reload current page
     const newEmployees = loadEmployeesForPage(
       state.pagination.currentPage,
       state.pagination.itemsPerPage
@@ -237,19 +218,16 @@ const store = createStore((set, get) => ({
     });
   },
 
-  // Computed getters
   getTotalPages: () => {
     const state = get();
     return Math.ceil(state.totalCount / state.pagination.itemsPerPage);
   },
 
-  // Get all employees (for search/filter functionality if needed)
   getAllEmployees: () => {
     const storedEmployees = localStorage.getItem('employees');
     return storedEmployees ? JSON.parse(storedEmployees) : employeesData;
   },
 
-  // Selected employee actions
   setSelectedEmployee: (employee) => {
     set({selectedEmployee: employee});
   },

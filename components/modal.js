@@ -184,7 +184,6 @@ export class ModalComponent extends LitElement {
     this.cancelText = msg('Cancel');
     this.type = 'confirm';
 
-    // Enable automatic re-render when locale changes
     updateWhenLocaleChanges(this);
   }
 
@@ -258,7 +257,6 @@ export class ModalComponent extends LitElement {
   }
 
   handleModalClick(e) {
-    // Prevent closing when clicking inside modal
     e.stopPropagation();
   }
 
@@ -272,7 +270,6 @@ export class ModalComponent extends LitElement {
     this.dispatchEvent(new CustomEvent('modal-confirm'));
   }
 
-  // Keyboard event handling
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('keydown', this.handleKeydown);

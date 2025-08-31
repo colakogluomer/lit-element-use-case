@@ -27,7 +27,6 @@ export class EditEmployeePage extends LitElement {
     this.successModalOpen = false;
     this.employeeToUpdate = null;
 
-    // Enable automatic re-render when locale changes
     updateWhenLocaleChanges(this);
   }
 
@@ -37,21 +36,18 @@ export class EditEmployeePage extends LitElement {
   }
 
   loadEmployee() {
-    // First, try to get employee from store (set by Edit button)
     const selectedEmployee = store.getState().selectedEmployee;
 
     if (selectedEmployee) {
       this.employee = selectedEmployee;
       this.employeeId = selectedEmployee.id;
       this.loading = false;
-      // Clear the selected employee from store
       store.getState().setSelectedEmployee(null);
       return;
     }
 
-    // If no selected employee, try to get from URL path (direct link or refresh)
     const pathSegments = window.location.pathname.split('/');
-    const id = pathSegments[pathSegments.length - 1]; // Get last segment
+    const id = pathSegments[pathSegments.length - 1];
 
     if (!id || isNaN(parseInt(id))) {
       this.error = msg('Employee ID is required');
@@ -61,7 +57,6 @@ export class EditEmployeePage extends LitElement {
 
     this.employeeId = parseInt(id);
 
-    // Get employee from store using ID
     this.employee = store.getState().getEmployeeById(this.employeeId);
 
     if (!this.employee) {
@@ -110,7 +105,6 @@ export class EditEmployeePage extends LitElement {
   handleEmployeeSave(e) {
     const {employee} = e.detail;
 
-    // Show confirmation modal first
     const modal = this.shadowRoot.querySelector('modal-component');
     modal.openModal({
       title: msg('Are you sure?'),
@@ -125,7 +119,6 @@ export class EditEmployeePage extends LitElement {
 
   handleSuccessConfirm() {
     this.successModalOpen = false;
-    // Update employee and navigate to employees list
     store.getState().updateEmployee(this.employeeId, this.employeeToUpdate);
     this.employeeToUpdate = null;
     Router.go('/employees');
@@ -133,11 +126,9 @@ export class EditEmployeePage extends LitElement {
 
   handleSuccessCancel() {
     this.successModalOpen = false;
-    // Stay on the form page
   }
 
   handleEmployeeCancel() {
-    // Navigate to employees list
     Router.go('/employees');
   }
 }

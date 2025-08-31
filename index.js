@@ -11,7 +11,6 @@ import './pages/add-employee.js';
 import './pages/edit-employee.js';
 import {globalCss} from './global-css.js';
 
-// Configure localization
 export const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
   targetLocales,
@@ -128,7 +127,6 @@ class EmployeeElement extends LitElement {
         background: var(--color-gray-100);
       }
 
-      /* Hamburger Menu */
       .hamburger-menu {
         display: none;
         flex-direction: column;
@@ -158,7 +156,6 @@ class EmployeeElement extends LitElement {
         transform: rotate(-45deg) translate(7px, -6px);
       }
 
-      /* Mobile Drawer */
       .mobile-drawer {
         position: fixed;
         top: 64px;
@@ -181,7 +178,6 @@ class EmployeeElement extends LitElement {
         visibility: visible;
       }
 
-      /* Hide mobile drawer on desktop */
       @media (min-width: 769px) {
         .mobile-drawer {
           display: none !important;
@@ -230,7 +226,6 @@ class EmployeeElement extends LitElement {
         width: 100%;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
         .header {
           padding: 0 var(--spacing-md);
@@ -263,7 +258,6 @@ class EmployeeElement extends LitElement {
   firstUpdated() {
     super.firstUpdated();
 
-    // Load saved locale from localStorage
     const savedLocale = localStorage.getItem('preferred-locale');
     if (savedLocale && savedLocale !== sourceLocale) {
       setLocale(savedLocale);

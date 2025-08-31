@@ -20,7 +20,6 @@ export class PaginationComponent extends LitElement {
         border-radius: 8px;
       }
 
-      /* Responsive pagination */
       @media (max-width: var(--mobile)) {
         .pagination {
           gap: 6px;
@@ -190,29 +189,24 @@ export class PaginationComponent extends LitElement {
     const maxVisible = 7; // Maximum visible page numbers
 
     if (this.totalPages <= maxVisible) {
-      // Show all pages if total is small
       for (let i = 1; i <= this.totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // Always show first page
       pages.push(1);
 
       if (this.currentPage <= 4) {
-        // Near the beginning - show 2,3,4,5 then ellipsis then last page
         for (let i = 2; i <= 5; i++) {
           pages.push(i);
         }
         pages.push('...');
         pages.push(this.totalPages);
       } else if (this.currentPage >= this.totalPages - 3) {
-        // Near the end - show first page, ellipsis, then last 4 pages
         pages.push('...');
         for (let i = this.totalPages - 4; i <= this.totalPages; i++) {
           pages.push(i);
         }
       } else {
-        // In the middle - show first page, ellipsis, current-1, current, current+1, ellipsis, last page
         pages.push('...');
         for (let i = this.currentPage - 1; i <= this.currentPage + 1; i++) {
           pages.push(i);

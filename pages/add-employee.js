@@ -13,7 +13,6 @@ export class AddEmployeePage extends LitElement {
     super();
     this.successModalOpen = false;
     this.employeeToSave = null;
-    // Enable automatic re-render when locale changes
     updateWhenLocaleChanges(this);
   }
 
@@ -41,7 +40,6 @@ export class AddEmployeePage extends LitElement {
   handleEmployeeSave(e) {
     const {employee} = e.detail;
 
-    // Show confirmation modal first
     const modal = this.shadowRoot.querySelector('modal-component');
     modal.openModal({
       title: msg('Are you sure?'),
@@ -56,7 +54,6 @@ export class AddEmployeePage extends LitElement {
 
   handleSuccessConfirm() {
     this.successModalOpen = false;
-    // Save employee and navigate to employees list
     store.getState().addEmployee(this.employeeToSave);
     this.employeeToSave = null;
     Router.go('/employees');
@@ -64,11 +61,9 @@ export class AddEmployeePage extends LitElement {
 
   handleSuccessCancel() {
     this.successModalOpen = false;
-    // Stay on the form page
   }
 
   handleEmployeeCancel() {
-    // Navigate to employees list
     Router.go('/employees');
   }
 }

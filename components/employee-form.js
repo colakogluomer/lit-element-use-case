@@ -42,7 +42,6 @@ export class EmployeeForm extends LitElement {
     };
     this.errors = {};
 
-    // Enable automatic re-render when locale changes
     updateWhenLocaleChanges(this);
   }
 
@@ -58,7 +57,6 @@ export class EmployeeForm extends LitElement {
       <div class="form-container">
         <form @submit=${this.handleSubmit}>
           <div class="form-grid">
-            <!-- First Name -->
             <div class="form-group">
               <label class="form-label">${msg('First Name')}</label>
               <input
@@ -75,7 +73,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Last Name -->
             <div class="form-group">
               <label class="form-label">${msg('Last Name')}</label>
               <input
@@ -90,7 +87,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Date of Employment -->
             <div class="form-group">
               <label class="form-label">${msg('Date of Employment')}</label>
               <input
@@ -109,7 +105,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Date of Birth -->
             <div class="form-group">
               <label class="form-label">${msg('Date of Birth')}</label>
               <input
@@ -127,7 +122,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Phone -->
             <div class="form-group">
               <label class="form-label">${msg('Phone')}</label>
               <div class="phone-input-container">
@@ -147,7 +141,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Email -->
             <div class="form-group">
               <label class="form-label">${msg('Email')}</label>
               <input
@@ -162,7 +155,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Department -->
             <div class="form-group">
               <label class="form-label">${msg('Department')}</label>
               <select
@@ -182,7 +174,6 @@ export class EmployeeForm extends LitElement {
                 : ''}
             </div>
 
-            <!-- Position -->
             <div class="form-group">
               <label class="form-label">${msg('Position')}</label>
               <select
@@ -247,7 +238,6 @@ export class EmployeeForm extends LitElement {
       errors.lastName = msg('Last name is required');
     }
 
-    // Date of Employment validation
     if (!this.formData.dateOfEmployment) {
       errors.dateOfEmployment = msg('Date of employment is required');
     } else {
@@ -262,7 +252,6 @@ export class EmployeeForm extends LitElement {
       }
     }
 
-    // Date of Birth validation
     if (!this.formData.dateOfBirth) {
       errors.dateOfBirth = msg('Date of birth is required');
     } else {
@@ -278,14 +267,12 @@ export class EmployeeForm extends LitElement {
       }
     }
 
-    // Phone validation
     if (!this.formData.phone.trim()) {
       errors.phone = msg('Phone is required');
     } else if (!this.isValidPhone(this.formData.phone)) {
       errors.phone = msg('Please enter a valid phone number');
     }
 
-    // Email validation
     if (!this.formData.email.trim()) {
       errors.email = msg('Email is required');
     } else if (!this.isValidEmail(this.formData.email)) {
@@ -310,13 +297,11 @@ export class EmployeeForm extends LitElement {
   }
 
   isValidPhone(phone) {
-    // Allow Turkish phone format: +90 532 123 45 67
     const phoneRegex = /^\+90 [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}$/;
     return phoneRegex.test(phone);
   }
 
   getPhoneNumberWithoutPrefix() {
-    // Remove +90 prefix and return only the number part
     if (this.formData.phone && this.formData.phone.startsWith('+90 ')) {
       return this.formData.phone.substring(4);
     }
@@ -324,10 +309,8 @@ export class EmployeeForm extends LitElement {
   }
 
   formatPhoneNumber(value) {
-    // Remove all non-digit characters
     const digits = value.replace(/\D/g, '');
 
-    // Format: XXX XXX XX XX
     if (digits.length <= 3) {
       return digits;
     } else if (digits.length <= 6) {
@@ -346,29 +329,23 @@ export class EmployeeForm extends LitElement {
     const input = e.target;
     const value = input.value;
 
-    // Format the phone number
     const formatted = this.formatPhoneNumber(value);
 
-    // Update the input value with formatted number
     input.value = formatted;
 
-    // Update form data with full phone number (including +90 prefix)
     this.updateField('phone', `+90 ${formatted}`);
   }
 
   handlePhoneKeydown(e) {
-    // Allow: backspace, delete, tab, escape, enter, and navigation keys
     if ([8, 9, 27, 13, 46, 37, 39].includes(e.keyCode)) {
       return;
     }
 
-    // Allow only digits
     if (!/[0-9]/.test(e.key)) {
       e.preventDefault();
       return;
     }
 
-    // Check if we already have 10 digits (max length for Turkish phone)
     const currentValue = e.target.value;
     const digitsOnly = currentValue.replace(/\D/g, '');
 
@@ -400,7 +377,6 @@ export class EmployeeForm extends LitElement {
     e.preventDefault();
 
     if (this.validateForm()) {
-      // Check for unique email and phone
       const uniqueErrors = {};
 
       if (!this.checkUniqueEmail(this.formData.email)) {

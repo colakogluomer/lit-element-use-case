@@ -37,7 +37,6 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const pageButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    // Should show 5 page buttons + 2 arrow buttons = 7 total
     assert.equal(pageButtons.length, 7);
   });
 
@@ -48,7 +47,6 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const pageButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    // Find the button with text "3" (current page)
     const currentPageButton = Array.from(pageButtons).find(
       (btn) => btn.textContent.trim() === '3'
     );
@@ -70,7 +68,6 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const pageButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    // Find the button with text "2" (second page)
     const secondPageButton = Array.from(pageButtons).find(
       (btn) => btn.textContent.trim() === '2'
     );
@@ -111,7 +108,7 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const nextButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    const nextButton = nextButtons[nextButtons.length - 1]; // Last button is next
+    const nextButton = nextButtons[nextButtons.length - 1];
     assert.exists(nextButton);
     assert.isFalse(nextButton.disabled);
   });
@@ -123,7 +120,7 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const nextButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    const nextButton = nextButtons[nextButtons.length - 1]; // Last button is next
+    const nextButton = nextButtons[nextButtons.length - 1];
     assert.exists(nextButton);
     assert.isTrue(nextButton.disabled);
   });
@@ -166,7 +163,7 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const nextButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    const nextButton = nextButtons[nextButtons.length - 1]; // Last button is next
+    const nextButton = nextButtons[nextButtons.length - 1];
     if (nextButton) {
       nextButton.click();
     }
@@ -210,7 +207,7 @@ suite('PaginationComponent', () => {
     await element.updateComplete;
 
     const nextButtons = element.shadowRoot.querySelectorAll('.pagination-item');
-    const nextButton = nextButtons[nextButtons.length - 1]; // Last button is next
+    const nextButton = nextButtons[nextButtons.length - 1];
     if (nextButton) {
       nextButton.click();
     }
@@ -246,7 +243,6 @@ suite('PaginationComponent', () => {
 
     await element.updateComplete;
 
-    // When totalPages <= 1, pagination renders empty
     const pagination = element.shadowRoot.querySelector('.pagination');
     assert.notExists(pagination);
   });

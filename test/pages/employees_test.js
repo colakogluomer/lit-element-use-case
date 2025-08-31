@@ -13,7 +13,6 @@ suite('EmployeesPage', () => {
   let element;
 
   setup(async () => {
-    // Clear store and localStorage before each test
     localStorage.clear();
     element = await fixture(html`<employees-page></employees-page>`);
   });
@@ -52,7 +51,6 @@ suite('EmployeesPage', () => {
     await element.updateComplete;
 
     const tableRows = element.shadowRoot.querySelectorAll('tbody tr');
-    // Check if table is rendered
     assert.isTrue(tableRows.length >= 0);
   });
 
@@ -62,19 +60,16 @@ suite('EmployeesPage', () => {
     await element.updateComplete;
 
     const cards = element.shadowRoot.querySelectorAll('.employee-card');
-    // Check if cards are rendered
     assert.isTrue(cards.length >= 0);
   });
 
   test('selects all employees when header checkbox is clicked', async () => {
     await element.updateComplete;
-    // Just check if test runs, don't fail if elements not found
     assert.isTrue(true);
   });
 
   test('selects individual employee', async () => {
     await element.updateComplete;
-    // Just check if test runs, don't fail if elements not found
     assert.isTrue(true);
   });
 
@@ -102,13 +97,11 @@ suite('EmployeesPage', () => {
 
   test('dispatches edit event when edit button is clicked', async () => {
     await element.updateComplete;
-    // Just check if test runs, don't fail if elements not found
     assert.isTrue(true);
   });
 
   test('opens delete modal when delete button is clicked', async () => {
     await element.updateComplete;
-    // Just check if test runs, don't fail if elements not found
     assert.isTrue(true);
   });
 

@@ -25,7 +25,6 @@ suite('EmployeeForm', () => {
     const form = element.shadowRoot.querySelector('form');
     assert.exists(form);
 
-    // Check all form fields exist
     const inputs = element.shadowRoot.querySelectorAll('input');
     const selects = element.shadowRoot.querySelectorAll('select');
 
@@ -49,7 +48,6 @@ suite('EmployeeForm', () => {
     element.employee = employee;
     await element.updateComplete;
 
-    // Force another update cycle
     element.requestUpdate();
     await element.updateComplete;
 
@@ -64,13 +62,11 @@ suite('EmployeeForm', () => {
   test('validates required fields', async () => {
     const form = element.shadowRoot.querySelector('form');
 
-    // Try to submit empty form
     const submitEvent = new Event('submit', {bubbles: true, cancelable: true});
     form.dispatchEvent(submitEvent);
 
     await element.updateComplete;
 
-    // Should have validation errors
     assert.isTrue(Object.keys(element.errors).length > 0);
   });
 
@@ -109,7 +105,6 @@ suite('EmployeeForm', () => {
   });
 
   test('dispatches employee-save event on valid submit', async () => {
-    // Fill form with valid data
     element.formData = {
       firstName: 'John',
       lastName: 'Doe',
@@ -170,10 +165,8 @@ suite('EmployeeForm', () => {
   });
 
   test('clears error when field is updated', async () => {
-    // Set an error first
     element.errors.firstName = 'First name is required';
 
-    // Update the field
     element.updateField('firstName', 'John');
 
     assert.isNull(element.errors.firstName);
