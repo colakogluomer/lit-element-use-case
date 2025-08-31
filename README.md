@@ -2,7 +2,7 @@
 
 Modern employee management application built with LitElement, featuring a responsive design, client-side routing, and robust state management.
 
-## 🚀 Technologies
+## Technologies
 
 - **LitElement 3.0** - Web Components framework
 - **Zustand** - Lightweight state management
@@ -11,7 +11,7 @@ Modern employee management application built with LitElement, featuring a respon
 - **localStorage** - Data persistence
 - **CSS Custom Properties** - Design system
 
-## 🏗️ Architecture
+## Architecture
 
 ### State Management
 
@@ -47,7 +47,7 @@ Despite Shadow DOM encapsulation, global styles are applied using:
 - **Utility Classes**: Reusable styling classes
 - **Responsive Breakpoints**: Mobile-first approach
 
-## 🛠️ Development
+## Development
 
 ### Installation
 
@@ -76,7 +76,7 @@ npm run test:watch
 npm run test:prod
 ```
 
-## 📱 Features
+## Features
 
 ### Employee Management
 
@@ -104,7 +104,7 @@ npm run test:prod
 - **One-time initialization** of sample data
 - **View preferences** saved automatically
 
-## 🎨 Design System
+## Design System
 
 ### CSS Variables
 
@@ -137,7 +137,7 @@ npm run test:prod
 - **Layout utilities**: `.page-container`, `.form-container`, `.controls`
 - **Form utilities**: `.form-grid`, `.form-group`, `.btn-primary`, `.btn-secondary`
 
-## 🔧 Configuration
+## Configuration
 
 ### Routing
 
