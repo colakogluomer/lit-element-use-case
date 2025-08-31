@@ -76,16 +76,6 @@ npm run test:watch
 npm run test:prod
 ```
 
-### Linting & Formatting
-
-```bash
-# Lint code
-npm run lint
-
-# Format code
-npm run format
-```
-
 ## 📱 Features
 
 ### Employee Management
@@ -120,21 +110,32 @@ npm run format
 
 ```css
 /* Breakpoints */
---mobile: 768px
---tablet: 1024px
---desktop: 1200px
+--mobile: 480px
+--tablet: 768px
+--desktop: 1024px
+--large-desktop: 1200px
+--xlarge-desktop: 1400px
 
 /* Colors */
 --color-primary: #ff6b35
---color-text-primary: #333
---color-bg-primary: #fff
+--color-text-primary: #333333
+--color-bg-primary: #ffffff
+
+/* Spacing */
+--spacing-xs: 0.25rem
+--spacing-sm: 0.5rem
+--spacing-md: 1rem
+--spacing-lg: 1.5rem
+--spacing-xl: 2rem
 ```
 
 ### Utility Classes
 
 - **Text utilities**: `.text-primary`, `.text-sm`, `.font-bold`
-- **Layout utilities**: `.flex`, `.grid`, `.p-4`
-- **Responsive utilities**: Media query helpers
+- **Background utilities**: `.bg-primary`, `.bg-secondary`, `.bg-tertiary`
+- **Font utilities**: `.text-xs`, `.text-lg`, `.font-medium`, `.font-semibold`
+- **Layout utilities**: `.page-container`, `.form-container`, `.controls`
+- **Form utilities**: `.form-grid`, `.form-group`, `.btn-primary`, `.btn-secondary`
 
 ## 🔧 Configuration
 
