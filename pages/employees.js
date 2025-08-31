@@ -476,13 +476,14 @@ export class EmployeesPage extends LitElement {
                 />
               </th>
 
-              <th>${msg('Name')}</th>
-              <th>${msg('Email')}</th>
-              <th>${msg('Phone')}</th>
-              <th>${msg('Department')}</th>
-              <th>${msg('Position')}</th>
+              <th>${msg('First Name')}</th>
+              <th>${msg('Last Name')}</th>
               <th>${msg('Date of Employment')}</th>
               <th>${msg('Date of Birth')}</th>
+              <th>${msg('Phone')}</th>
+              <th>${msg('Email')}</th>
+              <th>${msg('Department')}</th>
+              <th>${msg('Position')}</th>
               <th>${msg('Actions')}</th>
             </tr>
           </thead>
@@ -503,17 +504,18 @@ export class EmployeesPage extends LitElement {
                     />
                   </td>
 
-                  <td>${employee.firstName} ${employee.lastName}</td>
-                  <td>${employee.email}</td>
-                  <td>${employee.phone}</td>
-                  <td>${employee.department}</td>
-                  <td>${employee.position}</td>
+                  <td>${employee.firstName}</td>
+                  <td>${employee.lastName}</td>
                   <td>
                     ${new Date(employee.dateOfEmployment).toLocaleDateString()}
                   </td>
                   <td>
                     ${new Date(employee.dateOfBirth).toLocaleDateString()}
                   </td>
+                  <td>${employee.phone}</td>
+                  <td>${employee.email}</td>
+                  <td>${employee.department}</td>
+                  <td>${employee.position}</td>
                   <td class="actions">
                     <button
                       class="btn btn-edit"

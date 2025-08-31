@@ -9,7 +9,7 @@ export const globalCss = css`
     box-sizing: border-box;
   }
 
-  :globalbody {
+  body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -17,7 +17,7 @@ export const globalCss = css`
     font-size: var(--font-size-base);
     line-height: 1.5;
     color: var(--color-text-primary);
-    background-color: var(--color-bg-secondary);
+    background-color: black !important;
   }
 
   /* ========================================
@@ -114,7 +114,7 @@ export const globalCss = css`
   .page-container {
     display: block;
     padding: var(--spacing-xl);
-    max-width: var(--large-desktop);
+    max-width: var(--xlarge-desktop);
     margin: 0 auto;
   }
 

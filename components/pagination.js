@@ -5,25 +5,32 @@ export class PaginationComponent extends LitElement {
   static styles = [
     globalCss,
     css`
+      button:focus {
+        outline: none;
+        border: none;
+      }
       .pagination {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-sm);
+        gap: 8px;
         margin: var(--spacing-xl) 0;
         flex-wrap: wrap;
+        padding: 12px 16px;
+        border-radius: 8px;
       }
 
       /* Responsive pagination */
       @media (max-width: var(--mobile)) {
         .pagination {
-          gap: var(--spacing-xs);
+          gap: 6px;
+          padding: 8px 12px;
         }
 
         .pagination-item {
-          min-width: 32px;
-          height: 32px;
-          padding: 0 var(--spacing-sm);
+          min-width: 24px;
+          height: 24px;
+          padding: 0 8px;
           font-size: var(--font-size-xs);
         }
       }
@@ -32,44 +39,59 @@ export class PaginationComponent extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 40px;
-        height: 40px;
-        padding: 0 var(--spacing-sm);
-        border: 1px solid var(--color-border-light);
-        background: var(--color-white);
-        color: var(--color-text-primary);
+        min-width: 36px;
+        height: 36px;
+        padding: 0 12px;
+        border: none;
+        background: transparent;
+        color: #6c757d;
         text-decoration: none;
-        border-radius: var(--border-radius-md);
+        border-radius: 50%;
         cursor: pointer;
-        transition: all var(--transition-normal);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
+        transition: all 0.2s ease;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: inherit;
       }
 
       .pagination-item:hover:not(:disabled) {
-        background: var(--color-gray-100);
-        border-color: var(--color-gray-300);
+        background: #e9ecef;
+        color: #495057;
       }
 
       .pagination-item.active {
         background: var(--color-primary);
-        color: var(--color-white);
-        border-color: var(--color-primary);
+        color: white;
+        font-weight: 600;
       }
 
       .pagination-item:disabled {
-        opacity: 0.5;
+        color: #adb5bd;
         cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      .pagination-item:disabled:hover {
+        background: transparent;
+        color: #adb5bd;
       }
 
       .pagination-arrow {
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-bold);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1;
       }
 
       .pagination-dots {
-        color: var(--color-text-secondary);
-        font-weight: var(--font-weight-bold);
+        color: #6c757d;
+        font-weight: 600;
+        cursor: default;
+        padding: 0 4px;
+      }
+
+      .pagination-dots:hover {
+        background: transparent;
+        color: #6c757d;
       }
     `,
   ];
@@ -108,7 +130,17 @@ export class PaginationComponent extends LitElement {
           ?disabled=${this.currentPage === 1}
           @click=${() => this.handlePageChange(this.currentPage - 1)}
         >
-          <span class="pagination-arrow">‹</span>
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
         </button>
 
         <!-- Page Numbers -->
@@ -137,7 +169,17 @@ export class PaginationComponent extends LitElement {
           ?disabled=${this.currentPage === this.totalPages}
           @click=${() => this.handlePageChange(this.currentPage + 1)}
         >
-          <span class="pagination-arrow">›</span>
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
         </button>
       </div>
     `;
@@ -157,20 +199,20 @@ export class PaginationComponent extends LitElement {
       pages.push(1);
 
       if (this.currentPage <= 4) {
-        // Near the beginning
+        // Near the beginning - show 2,3,4,5 then ellipsis then last page
         for (let i = 2; i <= 5; i++) {
           pages.push(i);
         }
         pages.push('...');
         pages.push(this.totalPages);
       } else if (this.currentPage >= this.totalPages - 3) {
-        // Near the end
+        // Near the end - show first page, ellipsis, then last 4 pages
         pages.push('...');
         for (let i = this.totalPages - 4; i <= this.totalPages; i++) {
           pages.push(i);
         }
       } else {
-        // In the middle
+        // In the middle - show first page, ellipsis, current-1, current, current+1, ellipsis, last page
         pages.push('...');
         for (let i = this.currentPage - 1; i <= this.currentPage + 1; i++) {
           pages.push(i);
