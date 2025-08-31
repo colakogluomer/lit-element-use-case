@@ -1,0 +1,166 @@
+/* ========================================
+   CSS Custom Properties (CSS Variables)
+   ======================================== */
+
+:root {
+  /* ========================================
+     Breakpoints
+     ======================================== */
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
+  --large-desktop: 1200px;
+
+  /* ========================================
+     Font Sizes
+     ======================================== */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+
+  /* ========================================
+     Font Weights
+     ======================================== */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ========================================
+     Colors - Primary
+     ======================================== */
+  --color-primary: #ff6b35;
+  --color-primary-light: #ff8a5c;
+  --color-primary-dark: #e55a2b;
+  --color-primary-hover: #ff5722;
+
+  /* ========================================
+     Colors - Secondary
+     ======================================== */
+  --color-secondary: #007bff;
+  --color-secondary-light: #4da6ff;
+  --color-secondary-dark: #0056b3;
+  --color-secondary-hover: #0056b3;
+
+  /* ========================================
+     Colors - Success
+     ======================================== */
+  --color-success: #28a745;
+  --color-success-light: #5cb85c;
+  --color-success-dark: #1e7e34;
+  --color-success-hover: #218838;
+
+  /* ========================================
+     Colors - Danger
+     ======================================== */
+  --color-danger: #dc3545;
+  --color-danger-light: #e74c3c;
+  --color-danger-dark: #c82333;
+  --color-danger-hover: #c82333;
+
+  /* ========================================
+     Colors - Warning
+     ======================================== */
+  --color-warning: #ffc107;
+  --color-warning-light: #ffca2c;
+  --color-warning-dark: #e0a800;
+  --color-warning-hover: #e0a800;
+
+  /* ========================================
+     Colors - Info
+     ======================================== */
+  --color-info: #17a2b8;
+  --color-info-light: #5bc0de;
+  --color-info-dark: #138496;
+  --color-info-hover: #138496;
+
+  /* ========================================
+     Colors - Neutral
+     ======================================== */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* ========================================
+     Colors - Background
+     ======================================== */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #f8f9fa;
+  --color-bg-quaternary: #f5f5f5;
+  /* ========================================
+     Colors - Text
+     ======================================== */
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-text-inverse: #ffffff;
+
+  /* ========================================
+     Colors - Border
+     ======================================== */
+  --color-border-light: #e0e0e0;
+  --color-border-medium: #d1d5db;
+  --color-border-dark: #9ca3af;
+
+  /* ========================================
+     Spacing
+     ======================================== */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* ========================================
+     Border Radius
+     ======================================== */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 12px;
+  --border-radius-full: 9999px;
+
+  /* ========================================
+     Shadows
+     ======================================== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  /* ========================================
+     Transitions
+     ======================================== */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* ========================================
+     Z-Index
+     ======================================== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
